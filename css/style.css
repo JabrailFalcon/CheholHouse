@@ -47,6 +47,7 @@ body {
     max-width: 2400px;
     background-color: #251c11;
     color: #5a5b5b;
+    transition: all 0.3s;
 }
 
 a {
@@ -612,6 +613,7 @@ strong {
 }
 
 .map {
+    overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center ;

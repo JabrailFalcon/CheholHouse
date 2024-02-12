@@ -15,39 +15,73 @@ const sliderItem = document.querySelectorAll('.slider__item'),
 
 let sliderDots,
     itemCount = 0, 
-    sliderWidht = sliderContainer.offsetWidth,
-    targetCountry = 0,
-    targetItemCount = 0;
+    sliderWidht = 0,
+    targetCountry,
+    targetItemCount = 0,
+    touchStartX = 0,
+    touchEndX = 0;
 
+    
+
+// Задаем нужную ширену item и sliderContent
 window.addEventListener('resize', showSlide);
 
-btnUae.addEventListener('click', function () {
-    sliderContent[1].style.display = 'none';
-    modal.classList.add('__show');
-    targetCountry = 0; 
-    targetItemCount = contentUAE.childElementCount;
+function reset() {
+    targetItemCount = 0;
+    itemCount = 0;
+    sliderWidht = 0;
+    touchStartX = 0;
+    touchEndX = 0;
+
+};
+
+function showSlide() {
+    sliderWidht = sliderContainer.offsetWidth;
+    sliderContent[targetCountry].style.width = sliderWidht * targetItemCount + 'px';
+    sliderItem.forEach(item => item.style.width = sliderWidht + 'px');
+    stepSlide();  
+}
+
+function init() {  
+    showSlide(); 
     createDot(); 
     sliderDots = document.querySelectorAll('.slider__dot');
-    showSlide();
     clickDot();
     checkedWith();
+    swiper();
+} 
+
+btnUae.addEventListener('click', function () {
+    reset();
+    targetCountry = 0;
+    if (sliderContent[0].style.display === 'none'){
+        sliderContent[0].style.display = 'flex';
+    }
+    sliderContent[1].style.display = 'none';   
+   
+    targetItemCount = contentUAE.childElementCount;  
+    modal.classList.add('__show');  
+    init();
 });
 
 btnUA.addEventListener('click', function() {
-    sliderContent[0].style.display = 'none';
-    modal.classList.add('__show');
+    reset();
     targetCountry = 1;
+    if (sliderContent[1].style.display === 'none'){
+        sliderContent[1].style.display = 'flex';
+    }
+    sliderContent[0].style.display = 'none';
     targetItemCount = contentUA.childElementCount;
-    createDot(); 
-    sliderDots = document.querySelectorAll('.slider__dot');
-    showSlide();
-    clickDot();
-    checkedWith();
-});
+    modal.classList.add('__show');
+    init();
+});                                                         
+
+
 
 btnClose.addEventListener('click', function () {
     modal.classList.remove('__show');
-    location.reload();
+    //location.reload();
+    deleteDot();
 });
 
 
@@ -63,40 +97,10 @@ setInterval(() => {
     nextSlide()
  }, 3000);
 */
+function activeFirst() {
+    if (targetItemCount > 1) sliderDots[0].classList.add('active-dot');
 
-
-
-// Задаем нужную ширену item и sliderContent
-function showSlide() {
-    sliderWidht = sliderContainer.offsetWidth;
-    sliderContent[targetCountry].style.width = sliderWidht * targetItemCount + 'px';
-    sliderItem.forEach(item => item.style.width = sliderWidht + 'px');
-    //stepSlide();
-    
-}
-
-// Перелистываем слайд вперед
-function nextSlide() {
-    itemCount++;
-    if (itemCount >= targetItemCount) itemCount = 0;
-
-    stepSlide();
-    thisSlider(itemCount);
-}
-
-// Перелистываем слайд назад
-function prevSlide() {
-    itemCount--;
-    if (itemCount < 0) itemCount = targetItemCount - 1;
-
-    stepSlide();
-    thisSlider(itemCount);
-}
-
-// Задает шаг перемещения слайдов
-function stepSlide() {
-    sliderContent[targetCountry].style.transform = `translateX(${-itemCount * sliderWidht}px)`;
-}
+};
 
 // создаем dot
 function createDot() {
@@ -117,6 +121,60 @@ function createDot() {
     activeFirst();
 }
 
+// Задает шаг перемещения слайдов  `translateX(${-itemCount * sliderWidht}px)`
+function stepSlide() {
+    sliderContent[targetCountry].style.transform = "translate(-" + itemCount * sliderWidht + "px)";
+}
+
+// Указывает какой dot по счету активен
+function thisSlider(index) {
+    sliderDots.forEach(item => item.classList.remove('active-dot'));
+    sliderDots[index].classList.add('active-dot');
+}
+
+// Перелистываем слайд вперед
+function nextSlide() {
+    itemCount++;
+    if (itemCount >= targetItemCount) itemCount = 0;
+
+    stepSlide();
+    thisSlider(itemCount);
+}
+
+// Перелистываем слайд назад
+function prevSlide() {
+    itemCount--;
+    if (itemCount < 0) itemCount = targetItemCount - 1;
+
+    stepSlide();
+    thisSlider(itemCount);
+}
+
+// swiper
+function handleGesture() {
+    if (touchEndX < touchStartX) {
+        nextSlide();  
+    } else if (touchEndX > touchStartX) {
+        prevSlide();          
+    }
+  }
+
+  function swiper() {
+    sliderContent[targetCountry].addEventListener("touchstart", function (e) {
+        console.log("touch");
+        touchStartX = e.touches[0].clientX;
+      });
+      
+      sliderContent[targetCountry].addEventListener("touchend", function (e) {
+        console.log("touch2");
+        touchEndX = e.changedTouches[0].clientX;
+        handleGesture();
+      });
+  };
+  
+ // ->
+
+// --------------------------------------
 function deleteDot() {
     const sliderWrapper = document.querySelector('div.slider__wrapper');
     let n = targetItemCount -1;
@@ -132,18 +190,7 @@ function deleteDot() {
     }
 }
 
-
-function activeFirst() {
-    if (targetItemCount > 1) sliderDots[0].classList.add('active-dot');
-
-};
-
-// Указывает какой dot по счету активен
-function thisSlider(index) {
-    sliderDots.forEach(item => item.classList.remove('active-dot'));
-    sliderDots[index].classList.add('active-dot');
-}
-
+//
 // Вешает клик на dot
 
 function clickDot(){
