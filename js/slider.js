@@ -48,7 +48,7 @@ function init() {
     sliderDots = document.querySelectorAll('.slider__dot');
     clickDot();
     checkedWith();
-    //swiper();
+    document.body.style.overflow = 'hidden';
 } 
 
 btnUae.addEventListener('click', function () {
@@ -80,7 +80,7 @@ btnUA.addEventListener('click', function() {
 
 btnClose.addEventListener('click', function () {
     modal.classList.remove('__show');
-    //location.reload();
+    document.body.style.overflow = 'visible';
     deleteDot();
 });
 
