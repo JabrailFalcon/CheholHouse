@@ -48,7 +48,7 @@ function init() {
     sliderDots = document.querySelectorAll('.slider__dot');
     clickDot();
     checkedWith();
-    swiper();
+    //swiper();
 } 
 
 btnUae.addEventListener('click', function () {
@@ -91,6 +91,30 @@ btnClose.addEventListener('click', function () {
 sliderBtnNext.addEventListener('click', nextSlide);
 sliderBtnPrev.addEventListener('click', prevSlide);
 
+// swiper
+function handleGesture() {
+    if (touchEndX < touchStartX) {
+        nextSlide();  
+    } else if (touchEndX > touchStartX) {
+        prevSlide();          
+    }
+  }
+
+  sliderContent.forEach(iter => {
+    swiper(iter);
+  });
+
+  function swiper(iter) {
+     iter.addEventListener("touchstart", function (e) {
+        touchStartX = e.touches[0].clientX;
+      });
+      
+      iter.addEventListener("touchend", function (e) {
+        touchEndX = e.changedTouches[0].clientX;
+        handleGesture();
+      });
+  };
+  
 // Автоматическое перелистывание слайдов
 /*
 setInterval(() => {
@@ -121,9 +145,9 @@ function createDot() {
     activeFirst();
 }
 
-// Задает шаг перемещения слайдов  `translateX(${-itemCount * sliderWidht}px)`
+// Задает шаг перемещения слайдов  "translate(-" + itemCount * sliderWidht + "px)"
 function stepSlide() {
-    sliderContent[targetCountry].style.transform = "translate(-" + itemCount * sliderWidht + "px)";
+    sliderContent[targetCountry].style.transform = `translateX(${-itemCount * sliderWidht}px)`;
 }
 
 // Указывает какой dot по счету активен
@@ -149,29 +173,8 @@ function prevSlide() {
     stepSlide();
     thisSlider(itemCount);
 }
+//
 
-// swiper
-function handleGesture() {
-    if (touchEndX < touchStartX) {
-        nextSlide();  
-    } else if (touchEndX > touchStartX) {
-        prevSlide();          
-    }
-  }
-
-  function swiper() {
-    sliderContent[targetCountry].addEventListener("touchstart", function (e) {
-        console.log("touch");
-        touchStartX = e.touches[0].clientX;
-      });
-      
-      sliderContent[targetCountry].addEventListener("touchend", function (e) {
-        console.log("touch2");
-        touchEndX = e.changedTouches[0].clientX;
-        handleGesture();
-      });
-  };
-  
  // ->
 
 // --------------------------------------
