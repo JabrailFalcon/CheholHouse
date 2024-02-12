@@ -51,38 +51,42 @@
                     <figure><img src="img/concept/icon-instagram.svg" alt="instagram"></figure>
                     <figure><img src="img/concept/icon-facebook.svg" alt="facebook"></figure> -->               
                     <ul class="interactive__block__list">
-                        <li id="">
-                            <button>
+                        <li>
+                            <button class="contact " id="1">
                                 <img src="img/concept/internet.svg" alt="site">
                             </button>
                             <p></p>
                         </li>
-                        <li id="">
-                            <button>
-                                <img src="img/concept/email.svg" alt="email">
+                        <li>
+                            <button class="contact " id="2">
+                                <!-- <a href="mailto:jabrail.falcon@gmail.com"></a> -->
+                                    <img src="img/concept/email.svg" alt="email"> 
                             </button>
                             <p></p>
                         </li>
-                        <li id="">
-                            <button>
+                        <li >
+                            <button class="contact " id="3" >
+                                <!-- <a href="tel:+971561471890"></a> -->
                                 <img src="img/concept/phone.svg" alt="number">
                             </button>
                             <p></p>
                         </li>
-                        <li id="">
-                            <button>
+                        <li >
+                            <button class="contact " id="4" >
+                                <!-- <a href="https://www.tiktok.com/@cheholhouse"></a> -->
                                 <img src="img/concept/icon-tiktok.svg" alt="tiktok">
                             </button>
                             <p></p>
                         </li>
-                        <li id="">
-                            <button>
+                        <li >
+                            <button  class="contact " id="5" >
                                 <img src="img/concept/icon-instagram.svg" alt="instagram">
                             </button>
                             <p></p>
                         </li>
-                        <li id="">
-                            <button>
+                        <li >
+                            <button class="contact " id="6">
+                                <!-- <a href="https://www.facebook.com/cheholhouse.ukr"></a> -->
                                 <img src="img/concept/icon-facebook.svg" alt="facebook">
                             </button>
                             <p></p>
@@ -90,9 +94,31 @@
                     </ul>
                 </div>         
             </section>
+              <!-- Section notification popap -->
+              <section>
+                <dialog class="popap">
+                    <div class="title-popap">
+                        <img class="icon" src="img/concept/internet.svg" alt="site" data-text="www.cheholhouse.com">
+                        <img class="icon" src="img/concept/email.svg" alt="email" data-text="jabrail.falcon@gmail.com">
+                        <img class="icon" src="img/concept/phone.svg" alt="number" data-text="+971561471890">
+                        <img class="icon" src="img/concept/icon-tiktok.svg" alt="tiktok" data-text="www.tiktok.com/@cheholhouse">
+                        <img class="icon" src="img/concept/icon-instagram.svg" alt="instagram" data-text="Coming soon...">
+                        <img class="icon" src="img/concept/icon-facebook.svg" alt="facebook" data-text="www.facebook.com/cheholhouse.ukr">
+                    </div>
+                    <div class="notifications-popap">
+                            <div class="text-popap">
+                                <p class="popap-content"></p>
+                            </div>
+                        <div class="close__button">
+                            <button class="close-popap">Close</button>
+                        </div>
+                    </div>
+                </dialog>
+            </section>
         </div>
     </main>
     <script src="js/iTransform.js" type="module"></script>
     <script src="js/main.js" type="module"></script>
+    <script src="js/popap.js" type="module"></script>
 </body>
 </html>

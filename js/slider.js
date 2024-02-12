@@ -72,7 +72,7 @@ function showSlide() {
     sliderContent[targetCountry].style.width = sliderWidht * targetItemCount + 'px';
     sliderItem.forEach(item => item.style.width = sliderWidht + 'px');
     //stepSlide();
-    console.log("hi");
+    
 }
 
 // Перелистываем слайд вперед
