@@ -621,18 +621,19 @@ strong {
     cursor: pointer;
     position: absolute;
     background-color: #F58738;
-    width: 1%;
-    height: 2%;
+    width: 20px;
+    height: 20px;
     border-radius: 50%;
     transition: 0.3s;
+    box-shadow: 0 0 2px 1px #F58738
 }
 .map__btn__ukr {
-    top: 30.7%;
-    right: 47.1%;   
+    top: 25.5%;
+    right: 45%;   
 }
 .map__btn__uae {
-    top: 47.5%;
-    right: 38.5%;    
+    top: 43%;
+    right: 35%;    
 }
 
 .map__btn__ukr:hover, .map__btn__uae:hover {
@@ -780,26 +781,32 @@ strong {
 }
 
 @media screen and (min-width: 560px) {
+    
     .map__btn__ukr {
-        top: 30.9%;
+        top: 29.7%;
+        right: 45.5%;
     }
     .map__btn__uae {
-        top: 47.9%;
+        top: 45%;
+        right: 37%;
     }
     
 }
 
 @media screen and (min-width: 1100px) {
     .map__btn__ukr {
-        top: 31.2%;
+        top: 29.6%;
+        right: 46.1%;
     }
     .map__btn__uae {
-        top: 48%;
+        top: 46.2%;
+        right: 38%;
     }
     
 }
 
 @media screen and (max-width: 860px) {
+    
     .img__part3 {
         height: 70px;
         min-width: 70px;
@@ -819,5 +826,29 @@ strong {
         justify-content: space-between;
         width: 90%;
     }
+    
 }
 
+@media screen and (min-width: 1300px) {
+    .map__btn__ukr {
+        top: 30.5%;
+        right: 46.5%; 
+    }
+    .map__btn__uae {
+        top: 47.1%;
+        right: 38.1%;
+    }
+    
+}
+
+@media screen and (min-width: 1600px) {
+    .map__btn__ukr {
+        top: 30.5%;
+        right: 46.8%; 
+    }
+    .map__btn__uae {
+        top: 47.1%;
+        right: 38.1%;
+    }
+    
+}
