@@ -1,0 +1,135 @@
+._iMove {
+    transition: all 1s linear;
+    opacity: 0;
+}
+
+._iMove._active {
+    opacity: 1;
+}
+
+.ToUp._active {  
+    animation: ToUp 1s linear;
+}
+.Bounce._active {
+    animation: bounce 5s infinite;  
+}
+.ToLeft._active {
+    animation: ToLeft 1s ease;
+}
+.Flash._active {
+    animation: Flash 5s infinite;
+    font-weight: 200;
+} 
+
+
+.flipInY._active {   
+    animation: flipInY 1s ease;
+}
+
+@keyframes flipInY {
+    0% {
+        transform: perspective(400px) rotateY(90deg);
+    }
+    40% {
+        transform: perspective(400px) rotateY(-10deg);
+    }
+    70% {      
+        transform: perspective(400px) rotateY(10deg);
+    }
+    100% {     
+        transform: perspective(400px) rotateY(0deg);       
+    }
+}
+
+._drobWord {
+    display: flex;
+}
+  ._drobWord span {
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 0 10px;
+    animation: letter 0.5s;  
+  }
+
+  @media screen and (max-width: 730px) {
+    ._drobWord span {
+        font-weight:lighter;
+        font-size: 1.5rem;
+        margin: 0 5px;
+    }
+}
+
+@media screen and (max-width: 470px) {
+    ._drobWord span {
+        font-weight:lighter;
+        font-size: 1.3rem;
+        margin: 0 2px;
+    }
+}
+
+  @keyframes letter{
+    0% {opacity: 0; transform: translateX(15px)}
+    100% {opacity: 1; transform: translateX(0px)}
+  }
+
+@keyframes ToUp {
+    0% {     
+        transform: translate(0px, 120%);
+    }
+    50% {    
+        transform: translate(0px, 60%);
+    }
+    100% {
+        transform: translate(0px, 0px);
+    }
+}
+
+@keyframes bounce {
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+        -webkit-transform: translateY(0);
+        -ms-transform: translateY(0);
+        transform: translateY(0);
+    }
+    40% {
+        -webkit-transform: translateY(10px);
+        -ms-transform: translateY(10px);
+        transform: translateY(10px);
+    }
+    60% {
+        -webkit-transform: translateY(5px);
+        -ms-transform: translateY(5px);
+        transform: translateY(5px);
+    }
+
+}
+
+@keyframes ToLeft {
+    0% {
+        transform: translateX(50%);
+    }
+    50% {    
+        transform: translateX(20%);
+    }
+    100% {
+        transform: translateX(0px);
+    }
+}
+
+@keyframes Flash {
+    0% {
+        opacity: 0.8;
+        transform: scale(0.9);
+    }
+    50% {    
+        opacity: 1;
+        transform: scale(1.5);
+    }
+    100% {
+        opacity: 0.8;
+        transform: scale(0.9);
+    }
+}
